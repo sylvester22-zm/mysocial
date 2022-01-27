@@ -1,0 +1,12 @@
+#active-template{
+	background-color: rgb(173, 42, 42);
+}
+
+.active-img{
+    
+    height: 30px;
+    width: 30px;
+    border-radius: 25px;
+   
+    /* margin-top: 5px; */
+}

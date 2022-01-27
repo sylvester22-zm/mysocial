@@ -1,0 +1,47 @@
+<link href="/css/myprofile.css" rel="stylesheet">
+
+<div class="container ">
+ <i ng-click="myprofileBack()" class="fas fa-arrow-left" ></i>
+<div class="card mx-auto profile" style="width: 100%;">
+ 
+<div class="row mx-auto my-1">
+    <div class="profile-buttons">
+    <input type="button"  id="myBtn" value="Edit profile" class="btn btn-secondary btn-sm ">
+    <input  type="button"  class="btn btn-secondary btn-sm uploadProfile" value="upload Profile" ng-click="uploadProfile()"></input>
+    </div>  
+    </div>
+    </div>
+    <!-- Button trigger modal -->
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close text-right">&times;</span>
+           <small style="color:green" class="text-center alert"></small>
+    <p class="text-center">Profile Edit</p>
+     <div class="row mt-2 ">
+                    <div class="col-sm-6 m-2"><input type="text" id="firstname"  ng-model="profile.firstname"class="form-control" placeholder="first name" value=""></div>
+                    <div class="col-sm-6 m-2" ><input type="text" id="lastname"  class="form-control" ng-model="profile.lastname" placeholder="Last name"></div>
+                    <div class="col-sm-6 m-2" ><input type="text" id="lastname"  class="form-control" ng-model="profile.status" placeholder="Relationship Status"></div>
+                     <div class="col-sm-6 m-2"><textarea id="bio"  type="text" row="2" class="form-control" ng-model="profile.bio" placeholder="Your Bio"></textarea>
+                </div>
+  </div>
+  <div class="row justify-content-end">
+  <input style="float:right" type="button" value="Save" ng-click="saveEdit()" class="btn btn-success ">
+  
+  </div>
+
+</div>
+<div class="my posts">
+<h5>my posts will go here</h5>
+</div>
+ 
+</div>
+
+
+<!-- ////// -->
+ </div>

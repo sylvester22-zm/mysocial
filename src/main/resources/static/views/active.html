@@ -1,0 +1,21 @@
+<link  rel="stylesheet" href="/css/bootstrap.min.css"  />
+<link href="/css/active.css" rel="stylesheet">
+<div class="container" id="active-template">
+   
+        <div class="home-template">
+            <strong style="color: green;text-align: right;">active({{participants.length}})</strong>
+    
+      <div class="row m-1" ng-repeat="user in participants">         
+        <div class="col col-md-3 ">
+         <img class="active-img " src="/images/profile.jpg">
+        </div>
+        <div class="col col-md-3">
+        <a href="#!/chat/{{user.username}}" > 
+       <span>{{user.username}}</span>
+        </div>     </a> 
+         </div>
+    
+         <hr style="height: 1px;background-color: black;">
+        </div>
+      
+</div>

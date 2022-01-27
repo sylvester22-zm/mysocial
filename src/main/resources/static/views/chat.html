@@ -1,0 +1,49 @@
+<link href="/css/chat.css" rel="stylesheet">
+<link  rel="stylesheet" href="/css/bootstrap.min.css"  />
+
+    <!--end of chat pallete-->
+    <body>
+	<div class="container">
+		<div class="chat">
+			<div class="chat-header">
+				<div class="profile">
+					<div class="left">
+					<div class="nav-icons">
+						<i ng-click="myChat()" class="fas fa-arrow-left" ></i>
+						<!-- <img src="'+otherProfile.src+'" class="inbox-img ml-3"> -->
+						<strong class="ml-1">{{sendTo}}</strong></div>
+					 
+         </div> 
+         <div class="right">
+						<i class="fas fa-video mr-3"></i>
+						<i class="fas fa-phone mr-2"></i>
+						<!-- <img src="img/more.png" class="icon"> -->
+					</div>
+				
+					</div>
+					
+					
+				</div>
+			
+			<div class="chat-box">
+				
+				
+			</div>
+      
+			<div class="chat-footer">
+				<i class="fa fa-grin emo"></i>
+				<textarea row='1' class="form-control  form-control-sm ml-3 " 
+            ng-model="message"  style="width:  30px;border-radius: 15px;" type="text" placeholder="type here"
+            ></textarea> 
+				<div class="icons">
+					<i class="fa fa-paperclip" aria-hidden="true"></i>
+					<i class="fa fa-camera" aria-hidden="true"></i>
+				</div>
+				<!--  <i ng-click="sendMessage(message)" class="fa fa-paper-plane fa-2x " aria-hidden="true"></i> -->
+				<img ng-click="sendMessage(message)"  class="fa fa-paper-plane " src="/images/send.png">
+			</div>
+		</div>
+	</div>
+	
+</body>
+   

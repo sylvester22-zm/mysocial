@@ -1,0 +1,37 @@
+<link href="/css/createpost.css" rel="stylesheet">
+<div class="container createpost">
+
+<div class="row ">
+<div class="col-6 col-md-6 col-md-4">
+<i ng-click="createPostBack()" class="fas fa-arrow-left back-button" ></i>
+  <small class="text ">create news</small>
+</div>
+  <div class="col-6 col-md-6 col-md-4 text-right my-0">
+  <input type="button" value="post" ng-click="post()" class="btn btn-secondary btn-sm"/>
+  </div>
+  
+
+</div>
+<form >
+<div class="post-text">
+<textarea rows="8" cols="70" type="text" ng-model="payload"  id="payload" name="payload"  class="form-control">
+
+</textarea>
+</div>
+<div class="mx-10">
+<input  value="upload"  type="file" id="pic"  ng-model="photo"  name="photo"  accept="image/png,image/jpg" class="btn btn-secondary btn-sm image" >
+
+</div>
+</form>
+ <div class="picture-container">
+   
+    
+        <div class="picture">
+            <img style="width:100px;height:100px"   id="wizardPicturePreview" title="">
+          <!-- <input  id="pic"  class=""  accept="image/png,image/jpg" >  -->
+        </div>
+         <div id="img-data"></div>
+
+    </div>
+ 
+</div>

@@ -1,0 +1,75 @@
+ 
+<!DOCTYPE html>
+<html lang="en"  ng-app="home" >
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Pixer.com</title>
+    <link href="\fonts\webfonts" rel="stylsheet">
+    <link href="\fonts\css\all.css" rel="stylesheet">
+    <link  rel="stylesheet" href="/css/bootstrap.min.css"  />
+    
+    <link href="\fonts\css\fontawesome.min.css" rel="stylesheet">
+    <style type="text/css">
+    @media only screen and (min-width: 750px) {
+	.body{
+	background: black;
+	display: none;
+	}
+	
+}
+    </style>
+  
+</head >
+<!-- not quiete sure if this is the file that is activating the service worker
+but non the less push notifications are for another day -->
+<!-- <script src="./sw.js" type="text/javascript"></script> -->
+<body style="background: #f4f4f4" >
+<div class="container container-seacrhback ">
+
+<form class="form-inline active-cyan-4 py-2" id="searchfriend">
+    <i ng-click="searchBack()" id="searchBack" class="fas fa-arrow-left "  ng-controller='searchback'></i>
+  <input class="form-control form-control-sm  mx-auto w-75" type="text" placeholder="Search"
+    aria-label="Search" ng-model="username">
+  <a href="#!/search/{{username}}"> <i class="fas fa-search mr-5 " aria-hidden="true"></i></a>
+</form>
+</div>
+<div class="row no-gutters searcharea" >
+
+  <!-- <form id="searchfriend"  >
+  <input type="text" class="form-control serachuser" ng-model="username" placeholder="search for friends"/>
+  
+  <a href="#!/search/{{username}}"><i  class="fas fa-search"></i></a>
+  </form> -->
+  </div>
+     <header class="common-header " ng-include="'header.html'"></header> 
+     
+       
+            <main ng-view></main>
+            <div show-active></div>
+           
+          <div ng-controller="connect">
+      
+          </div> 
+           
+        
+   
+    
+   
+   <!-- third party libs -->
+    <script src="/js/lib/angular.min.js"></script> 
+    <script src="/js/lib/angular.route.min.js"></script> 
+   <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/js/controller.js"></script>
+    <script src="/js/service.js"></script>
+    <script src="/js/lib/jquery.min.js"></script>
+    
+    
+ <script src="/js/app.js"></script>
+ 
+  <script src="/js/routes.js"></script> 
+</body>
+</html>

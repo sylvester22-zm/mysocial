@@ -1,0 +1,46 @@
+@media only screen and (max-width: 750px) {
+body{
+	background: black;
+}
+h3{
+	background: green;
+}
+
+.list-content{
+ min-height:300px;
+}
+.list-content .list-group .title{
+	padding-top:10px;
+  background:#c0c0c0;
+  border:2px solid #DDDDDD;
+  font-weight:bold;
+  color:orange;
+}
+.list-group-item img {
+    height:60px; 
+    width:60px;
+}
+
+.list-group-item{
+	background:#f4f4f4;
+}
+.prj-name {
+    color: #e9e9e9;  
+}
+.some-bio{
+	position: absolute;
+	margin-left: 71px;
+	margin-top: 40px;
+	color:black;
+}
+.somoe-info{
+	position: absolute;
+	margin-left: 71px;
+	margin-top: 20px;
+	color:black;
+}
+.name {
+	margin-left:10px;
+     color: black; 
+}
+}

@@ -1,0 +1,66 @@
+@media only screen and (max-width: 750px) {
+body{
+   background: green;
+}
+.messages-palate{
+     margin-top: 2px; 
+    scroll-behavior: smooth;
+    height: fit-content;
+    
+}
+.time{
+	margin-left: 80px;
+}
+.common-header{
+	position: fixed;
+    width: 100%;
+}
+.my-message{
+    /* display: flex; */
+    height: 50px;
+    margin: 5px;
+     /* background: yellow; */
+   
+}
+.message-details{
+	margin-top:15px;
+    padding-top: 10px;
+    padding-left: 1px;
+   /*  position: relative; */
+    height: 50px;
+    width: 200px;
+}
+
+.chat-from{
+    top: 0px;
+    left: 20px; 
+   /*  position: relative; */
+color: white;
+
+}
+
+ .chat-message{
+     left:0px;
+    top:10px;
+    /* position: relative;   */
+   color: yellow;
+}
+.message-list{
+     margin:10px; 
+    padding-top: 3px;
+    
+    padding-left: 3px;
+    background:grey;
+    list-style: none;
+    height: 50px;
+    border-radius: 10px;
+   /*  display: flex; */
+    
+}
+.inbox-img{
+    
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+}
+}
