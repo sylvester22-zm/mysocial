@@ -18,6 +18,7 @@ public class VanillaApplication
 	
 	
 	public static void main(String[] args) {
+	
 		SpringApplication.run(VanillaApplication.class, args);
 	}
 

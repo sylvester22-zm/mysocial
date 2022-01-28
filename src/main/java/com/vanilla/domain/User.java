@@ -46,10 +46,7 @@ public class User implements UserDetails {
 	 * UserProfile profile;
 	 */
      
-     public User(Object o) {
-    	 this.firstname=o.toString().formatted(firstname);
-    	 this.username=o.toString().formatted(username);
-     }
+    
      
 	public Set<UserRole> getUserRole() {
     return userRole;
