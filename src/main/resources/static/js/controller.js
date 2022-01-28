@@ -195,7 +195,7 @@ angular.module('home.controller')
 
 			angular.element(home).$scope;
 
-			const url = 'http://localhost:8080/conversation/' + $scope.sendTo;
+			const url = 'https://wesocialites.herokuapp.com/conversation/' + $scope.sendTo;
 			var rowClass = '';
 			xhr.open('POST', url, true);
 			xhr.send();
@@ -309,7 +309,7 @@ angular.module('home.controller')
 angular.module('home.controller')
 	.controller('searchfriend', ['$scope', 'socket', '$routeParams', function($scope, socket, $routeParams) {
 		var xhr = new XMLHttpRequest();
-		const url = 'http://localhost:8080/search/';
+		const url = 'https://wesocialites.herokuapp.com/search/';
 		$scope.username = $routeParams.username;
 		$('.common-header ').hide();
 		$('#searchBack').css('display', 'block');
@@ -627,7 +627,7 @@ angular.module('home.controller')
 	.controller('feeds', ['$scope', '$location', 'socket', function($scope, $location, socket) {
 		var xhr = new XMLHttpRequest();
 		var xhrpost = new XMLHttpRequest()
-		const url = 'http://localhost:8080'
+		const url = 'https://wesocialites.herokuapp.com/'
 		$('.common-header ').show();
 		$('#searcharea').show();
 		var image = new Image();
@@ -1062,7 +1062,7 @@ angular.module('home.controller')
 		
 
 		$scope.mymessages = '';
-		const url = 'http://localhost:8080/conversations';
+		const url = 'https://wesocialites.herokuapp.com/conversations';
 
 		/*$scope.messages = socket.shareMessage(function (pay) {
 		
@@ -1169,7 +1169,7 @@ console.log(message.username)
 angular.module('home.controller')
 	.controller('profile', ['$scope', '$routeParams', '$window', '$location', function($scope, $routeParams, $window, $location) {
 		var xhr = new XMLHttpRequest();
-		const url = 'http://localhost:8080/userprofile/';
+		const url = 'https://wesocialites.herokuapp.com/userprofile/';
       var profile='';
      var image=new Image();
           
@@ -1255,7 +1255,7 @@ angular.module('home.controller')
 		$('#searchfriend').hide();
 		var xhr = new XMLHttpRequest();
 		var youMayKnow='';
-		var url='http://localhost:8080/youmayknow'
+		var url='https://wesocialites.herokuapp.com/youmayknow'
 		xhr.open("POST",url,true);
 		xhr.send()
 			xhr.onload=()=>{
