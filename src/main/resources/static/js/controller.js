@@ -627,7 +627,7 @@ angular.module('home.controller')
 	.controller('feeds', ['$scope', '$location', 'socket', function($scope, $location, socket) {
 		var xhr = new XMLHttpRequest();
 		var xhrpost = new XMLHttpRequest()
-		const url = 'https://wesocialites.herokuapp.com/'
+		const url = 'https://wesocialites.herokuapp.com'
 		$('.common-header ').show();
 		$('#searcharea').show();
 		var image = new Image();
