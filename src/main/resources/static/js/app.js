@@ -7,9 +7,26 @@ var home=angular.module('home',['home.controller','home.service','home.routes'])
          $window.history.back()
  }
 
- 
 }])
+var  clicked=0;
+ var  drawerButton=()=>{
+	
+	clicked++;
+	     $('.sidebar').css('display','block')
+         $('.newsfeed').css('display','none')
+         $('.common-header').css('display','none')
+	console.log(clicked)
+           if(clicked==2){
+	        clicked=0;
+	       $('.sidebar').css('display','none')
+         $('.newsfeed').css('display','block')
+         $('.common-header').css('display','block')
+	
+}
+		console.log("hay there")
+	}
    
+  
  
 	/* */
 

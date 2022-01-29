@@ -8,6 +8,7 @@ h3{
 
 .list-content{
  min-height:300px;
+ text-decoration: none;
 }
 .list-content .list-group .title{
 	padding-top:10px;
@@ -19,8 +20,11 @@ h3{
 .list-group-item img {
     height:60px; 
     width:60px;
+    border-radius: 3px;
 }
-
+.list-group{
+	text-decoration: none;
+}
 .list-group-item{
 	background:#f4f4f4;
 }

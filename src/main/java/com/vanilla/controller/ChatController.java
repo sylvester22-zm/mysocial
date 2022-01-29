@@ -216,7 +216,7 @@ public class ChatController {
 	}
 
 	@MessageMapping("/post.public.")
-	public CreatePost post(@Payload CreatePost post, Principal principal,HttpServletResponse response ) {
+	public CreatePost post(@Payload CreatePost post, Principal principal ) {
 		
 		User user = userServiceImpl.findByUsername(principal.getName());
 		UserProfile profile = userProfileService.findByUserProfile(user);

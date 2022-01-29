@@ -11,7 +11,6 @@ angular.module('home.controller', [])
 		$scope.messageInbox = [];
 		$scope.post = [];
 		console.log($scope.username, "hearders");
-
 		/*
 					 if ('serviceWorker' in navigator) {
 	  window.addEventListener('load', function() {
@@ -359,7 +358,7 @@ angular.module('home.controller')
 		$('#searchfriend').hide();
 		var editProfile=new XMLHttpRequest()
 		var xhr = new XMLHttpRequest()
-		url='http://localhost:8080/'
+		url='https://wesocialites.herokuapp.com/'
 		var image = new Image()
 		//where the user wil choose his/her profile
 		//xhr.open('POST',)
@@ -646,7 +645,7 @@ angular.module('home.controller')
 			var img = new Image();
 			img.src = post.photo;
 
-			console.log(post.profileId);
+			console.log(post);
 			$('.post-body').prepend('<div class="box box-widget">' +
 				'<div class="box-header with-border">' +
 				'<div class="user-block">' +
@@ -693,7 +692,7 @@ angular.module('home.controller')
 				'</div>')
 
 		})
-
+      
 
 		//xhrr api to get users profile details
 		xhr.open("POST", url + '/myprofile', true)
@@ -705,7 +704,7 @@ angular.module('home.controller')
 			$('.post-something').prepend('<a href="#!/myprofile/' + myprofile.id + '">' +
 				'<img class="myprofile-img " src="' + image.src + '"/></a>')
 		}
-
+          
 		//xhr object to grab all posts from the database
 
 		xhrpost.open("POST", url + '/posts', true)
@@ -714,16 +713,20 @@ angular.module('home.controller')
 			var postImg = new Image();
 			var profileimg=new Image();
 			var posts = JSON.parse(xhrpost.responseText)
-
+     console.log(posts)
 			posts.forEach(post => {
 				postImg.src = post.postimg;
 				profileimg.src=post.profilePic;
+				var fn= post.firstname.charAt(0).toUpperCase()+post.firstname.slice(1);
+				var ln=post.lastname.charAt(0).toUpperCase()+post.lastname.slice(1);
+				console.log(fn)
 				console.log(post)
+				
 				$('.post-body').append('<div class="box box-widget">' +
 					'<div class="box-header with-border">' +
 					'<div class="user-block">' +
 					'<a href="#!/profile/' + post.profileid + '"> <img class="userpost-img " src="' +profileimg.src + '"></a>' +				
-					'<span class="username" ><a href="#!/profile/' + post.profileid + '">' + post.firstname + ' ' + post.lastname + '</a></span>' +
+					'<span class="username" ><a href="#!/profile/' + post.profileid + '">' + fn+ ' ' + ln + '</a></span>' +
 					'<span class="posted-at">'+ post.localDatetime + ' </span>' +
 					'</div>' +
 					'<div class="box-tools">' +
@@ -888,7 +891,7 @@ angular.module('home.controller')
         // Handle the compressed image. es. upload or save in local state
         displayInfo('Original file', file);
         displayInfo('Compressed file', blob);
-          $scope.post = () => {
+          $scope.ost = () => {
 	               
                  console.log(payload)
 	       var pic = document.getElementById('pic').files[0],
@@ -947,8 +950,10 @@ angular.module('home.controller')
 			
 			
 		});
-		 $scope.post = (gettValueus) => {
-					console.log("clikced")
+		 $scope.post = () => {
+			var payload=$('#payload').val();
+					console.log("clikced",payload)
+				//	socket.send('/app/post.public.', {},)
 				}
 				
 		$scope.payload = '';
@@ -1043,6 +1048,7 @@ function displayInfo(label, file) {
 
 
 		$scope.createPostBack = () => {
+			$('#searchfriend').show();
 			window.history.back();
 		}
 
@@ -1062,7 +1068,7 @@ angular.module('home.controller')
 		
 
 		$scope.mymessages = '';
-		const url = 'https://wesocialites.herokuapp.com/conversations';
+		const url = 'https://wesocialites.herokuapp.com/conversations/';
 
 		/*$scope.messages = socket.shareMessage(function (pay) {
 		
@@ -1108,15 +1114,16 @@ angular.module('home.controller')
 					console.log(subMessage,"after sub")
 					var time=message.localDatetime;
 					var t=time.substring(0,9)
+					
                    if(message.isSender){
 						console.log(message)
 						//console.log(message.message+"----->"+message.toUsername)
-					
-                   
+					let   fromUser = message.toUsername.charAt(0).toUpperCase() + message.toUsername.slice(1)
+                       
 					messageholder = messageholder + '<a   href="#!/chat/' +message.toUsername + '">' +
 
 						'<li class="message-list">' +
-						'<span class="chat-from">' + `${message.toUsername}` + 
+						'<span class="chat-from">' + `${fromUser}` + 
 						'<small class="text-right time">'+t+'</small>'+
 						'</span>' +
 						'<br>' +
@@ -1127,10 +1134,11 @@ angular.module('home.controller')
         
 
               else{             
+	                       let   fromUser = message.username.charAt(0).toUpperCase() + message.username.slice(1)
 	                      messageholder = messageholder + '<a   href="#!/chat/' +message.username + '">' +
 
 						'<li class="message-list">' +
-						'<span class="chat-from">' + `${message.username}` + 
+						'<span class="chat-from">' + `${fromUser}` + 
 						'<small class="text-right time">'+t+'</small>'+
 						'</span>' +
 						'<br>' +
@@ -1255,7 +1263,7 @@ angular.module('home.controller')
 		$('#searchfriend').hide();
 		var xhr = new XMLHttpRequest();
 		var youMayKnow='';
-		var url='https://wesocialites.herokuapp.com/youmayknow'
+		var url='https://wesocialites.herokuapp.com/youmayknow/'
 		xhr.open("POST",url,true);
 		xhr.send()
 			xhr.onload=()=>{
@@ -1267,8 +1275,8 @@ angular.module('home.controller')
       '  <div class="row" >'+        
       '  <img class="img-responsive" src="'+profile.profilepic+'">'+
        ' <span class="name">'+profile.firstname +" "+ profile.lastname+' </span>'+
-        ' <span class="somoe-info ml-30 mt-10">@enterprenuer</span>'+
-        '  <span class="some-bio">somebio here</span>'+
+        ' <span class="somoe-info ml-30 mt-10">@'+profile.firstname+'</span>'+
+        /*'  <span class="some-bio">'+profile.bio+'</span>'+*/
        ' </div>'+
         '</a>'+
         '</li>'
