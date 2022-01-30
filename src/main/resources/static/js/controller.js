@@ -950,7 +950,7 @@ angular.module('home.controller')
 			
 			
 		});
-		 $scope.post = () => {
+		 $scope.pos = () => {
 			var payload=$('#payload').val();
 					console.log("clikced",payload)
 				//	socket.send('/app/post.public.', {},)
