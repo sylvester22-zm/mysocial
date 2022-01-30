@@ -891,7 +891,7 @@ angular.module('home.controller')
         // Handle the compressed image. es. upload or save in local state
         displayInfo('Original file', file);
         displayInfo('Compressed file', blob);
-          $scope.ost = () => {
+          $scope.post = () => {
 	               
                  console.log(payload)
 	       var pic = document.getElementById('pic').files[0],
@@ -950,11 +950,11 @@ angular.module('home.controller')
 			
 			
 		});
-		 $scope.pos = () => {
+		/* $scope.pos = () => {
 			var payload=$('#payload').val();
 					console.log("clikced",payload)
 				//	socket.send('/app/post.public.', {},)
-				}
+				}*/
 				
 		$scope.payload = '';
 		$scope.photo = '';
