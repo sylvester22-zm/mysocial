@@ -57,7 +57,7 @@ public class ResourceController {
 		User user=userServiceImpl.findByUsername(me);
 		UserProfile profile = userProfileService.findByUserProfile(user);
 		return new UserProfile(profile.getUsername(),profile.getFirstname(),profile.getLastname(),
-				profile.getBio(),profile.getProfilepic(),profile.getId());
+				profile.getBio(),profile.getProfilepic(),profile.getId(),profile.getJoined(),profile.getStatus());
 	}
 	@RequestMapping("/posts")
 	@ResponseBody
@@ -79,6 +79,7 @@ public class ResourceController {
 			profile.setBio(pro.getBio());
 			profile.setFirstname(pro.getFirstname());
 			profile.setLastname(pro.getLastname());
+			profile.setStatus(pro.getStatus());
 			user.setFirstname(pro.getFirstname());
 			user.setLastname(pro.getLastname());
 	
@@ -115,7 +116,7 @@ public class ResourceController {
 
 	}
 
-	@RequestMapping("/signin")
+	@RequestMapping("/login")
 	public String login() {
 
 		return "index";
@@ -145,7 +146,7 @@ public class ResourceController {
 
 		User user = new User();
 		Role role = new Role();
-		role.setRoleId(1);
+		//role.setRoleId();
 		role.setName("User");
 		Set<UserRole> userRole = new HashSet<>();
 		user.setEmail(email);

@@ -18,6 +18,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 	 * ,nativeQuery = true) Slice<Post> getAllPosts();
 	 */
 	@Query("select  new com.vanilla.domain.PostDammy(p.id,p.profile,p.username,p.postlikes,p.postloves,p.postshares,p.posttext,\r\n"
-			+ "p.postimg,pro.profilepic,p.localDatetime,p.firstname,p.lastname) from Post p, UserProfile pro where p.profile=pro.id ")
+			+ "p.postimg,pro.profilepic,p.localDatetime,p.firstname,p.lastname) from Post p, UserProfile pro where p.profile=pro.id order by p.localDatetime DESC ")
 	List<PostDammy> getAllPosts();
 }

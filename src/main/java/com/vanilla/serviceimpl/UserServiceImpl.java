@@ -1,6 +1,8 @@
 
 package com.vanilla.serviceimpl;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -46,6 +48,10 @@ public class UserServiceImpl implements UserService {
 		profile.setFirstname(user.getFirstname());
 		profile.setLastname(user.getLastname());
 		profile.setUser(user);
+		  LocalDateTime dateTime = LocalDateTime.now();
+		DateTimeFormatter formart = DateTimeFormatter.ofPattern(" HH:mm a dd-MM-yyyy");
+		String joined=dateTime.format(formart);
+		profile.setJoined(joined);
 		profileRepository.save(profile);
 		if (currentUser != null) {
 			LOG.info("user {} already exists. Nothing will be done.");

@@ -51,7 +51,9 @@ padding: 5px;
 <!-- not quiete sure if this is the file that is activating the service worker
 but non the less push notifications are for another day -->
 <!-- <script src="./sw.js" type="text/javascript"></script> -->
-<body style="background: #f4f4f4" class="container-fluid pl-0 pr-0"  >
+<div class="connection-error"></div>
+<!-- class="container-fluid pl-0 pr-0"  -->
+<body style="background: #f4f4f4"  >
 
     <div class="sidebar">
     <div class="sidebar-items">
@@ -62,9 +64,9 @@ but non the less push notifications are for another day -->
     </div>
         
         </div>
-      <a id="drawer"> <i onclick="drawerButton()"   class="fa fa-bars fa-2x pt-2" aria-hidden="true"></i></a>
+      <a > <i onclick="drawerButton()"  id="drawer" class="fa fa-bars fa-2x pt-2" aria-hidden="true"></i></a>
 	
-<div class="container  container-searchback">
+<div class="container  no-gutters container-searchback">
 
 <form class="form-inline active-cyan-4 py-2" id="searchfriend">
     <i ng-click="searchBack()" id="searchBack" class="fas fa-arrow-left "  ng-controller='searchback'></i>

@@ -21,7 +21,9 @@ angular.module('home.service', [])
 					});
 				}, function(error) {
 					$rootScope.$apply(function() {
-						errorCall(error);
+						console.log("ooops there was an error try to refresh the page",error)
+						$('.connection-error').append('<span class="alert alert-danger">ooops there was an error try  refreshing the page<span>')
+						//errorCall(error);
 					});
 				});
 			},

@@ -26,6 +26,7 @@ public class ChatMessage {
 	public ChatMessage() {
 
 	}
+	public ChatMessage(String nomessages){}
 
 	public Long getSenderId() {
 		return senderId;

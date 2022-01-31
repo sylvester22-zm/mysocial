@@ -190,6 +190,7 @@ angular.module('home.controller')
 			$('.form-inline').hide();
 			$('.searcharea').hide();
 			$('#searchfriend').hide();
+			$('#sidebar').hide()
 			var otherProfile = new Image();
 
 			angular.element(home).$scope;
@@ -199,14 +200,14 @@ angular.module('home.controller')
 			xhr.open('POST', url, true);
 			xhr.send();
 			xhr.onload = function() {
-				var mymessage = JSON.parse(xhr.response);
-
-				console.log(mymessage)
+				
 				var messages = '';
 				var otherUser = '';
 				var messageHolder = '';
 
 				if (xhr.status === 200) {
+					var mymessage = JSON.parse(xhr.response);
+					if(mymessage.length!==0){
 					mymessage.forEach(message => {
 						//otherProfile.src=message.profilepic;
 
@@ -215,10 +216,11 @@ angular.module('home.controller')
 
 						if (message.isSender) {
 							rowClass = rowClass + '<div class="text-right " style="border-radius:25px;width:100%">' +
+							'<small>' + message.localDatetime + '</small>' +
 								'<div class="pl-2"  style="background:#f1f0e8;border-radius:25px;width:100%;">' +
 								'<p class="pr-2 message" style="border-radius:25px;background-color: rgb(192, 192, 192);;width:100%">' +
 								message.message + '<br>' +
-								'<small>' + message.localDatetime + '</small>' +
+								
 								'</p>' +
 								'</div>' +
 								'</div>'
@@ -230,9 +232,9 @@ angular.module('home.controller')
 
 							rowClass = rowClass + '<div class="text-left" style="width:100%">' +
 								'<diV style="width:100%;background: #f1f0e8;">' +
+								'<small>' + message.localDatetime + '</small>' +
 								'<p class="pl-2 message" style="border-radius:25px;background-color:green;width:70%">' +
 								message.message + '<br>' +
-								'<small>' + message.localDatetime + '</small>' +
 								'</p>' +
 								'</div>' +
 								'</div>'
@@ -241,9 +243,13 @@ angular.module('home.controller')
 						}
 					})
 					autosize();
-				}
+				}else{
+	console.log("You have no!1")
+	           $('.chat-box').append("Send Your Fisrt Message to This Person");
+	    
+}
 				$('.chat-box').append(rowClass);
-
+         }
 			}
 			var chatbox = document.querySelector('.chat-box')
 			console.log("scrol called")
@@ -312,6 +318,7 @@ angular.module('home.controller')
 		$scope.username = $routeParams.username;
 		$('.common-header ').hide();
 		$('#searchBack').css('display', 'block');
+		$('#drawer').hide();
 		console.log($scope.username)
 		var seearchResult = '';
 		xhr.open("POST", url + $scope.username, true)
@@ -319,30 +326,39 @@ angular.module('home.controller')
 		xhr.onload = () => {
 			var searchList = JSON.parse(xhr.response);
 			console.log(searchList)
-			var image = new Image(100, 100);
+			var image = new Image(200, 200);
 
 			image.src = '';
 			searchList.forEach(user => {
 				image.src = user.profilepic;
-
+               user.firstname= user.firstname.charAt(0).toUpperCase() + user.firstname.slice(1)
+                 user.firstname.charAt(0).toUpperCase() + user.firstname.slice(1)
 				seearchResult = seearchResult + '<a class="searchAtag"  href="#!/profile/' + user.id + '">' +
 					/*'<li class="searchedUserList">' +*/
-					'<img class="col-6 search-image" src="' + image.src + '"><img>' +
-					'<span class="col-6">' + user.firstname +" "+user.lastname+ '</span>' +
-					'<a>' +
+					'<div class="row">'+
+					'<div class="col-4">'+
+					'<img class="search-image ml-3" src="' + image.src + '"><img>' +
+					'</div>'+
+					'<span class="col-4 mt-8 ml-2 mt-3 serchnames">' + user.firstname +" "+user.lastname+ '</br>'+
+					'<span class="search-username ">@'+user.username+'<span>'+
+					'</span>' +
+					'</div>'+
+					'<a>' 
 					'<hr style="width:100%;height:0.5px;background: grey">';
 
 				//document.write("<img src='"+image.src+"'><img>")
 				/*console.log(image.src)
 				$('.search-display').append(image.src)*/
 			})
-
+           
 
 			$('.search-display').append(seearchResult)
 
 		}
 
 		$scope.searchBack = () => {
+			$scope.username ="";
+			$('#sidebar').show();
 			console.log("search back ")
 		}
 		//$location.path('/userprofile/'+$location.search);
@@ -356,32 +372,43 @@ angular.module('home.controller')
 		$('.common-header ').hide();
 		$('.searcharea').hide();
 		$('#searchfriend').hide();
+		$('#drawer').hide();
 		var editProfile=new XMLHttpRequest()
 		var xhr = new XMLHttpRequest()
 		url='https://wesocialites.herokuapp.com/'
 		var image = new Image()
+		 var profile='';
 		//where the user wil choose his/her profile
 		//xhr.open('POST',)
 		xhr.open("POST", url+'myprofile', true)
 		xhr.send();
 		xhr.onload = () => {
-			var profile = JSON.parse(xhr.responseText);
+			 profile = JSON.parse(xhr.responseText);
 			image.src = profile.profilepic;
-			console.log(profile, 'userProfile')
-			$('.profile').prepend( '<img src="'+image.src+'" class="card-img-top myprofile-img">' +
-         '<span class="text-center">'+profile.firstname +" "+profile.lastname+'</span>'+
-'<span class="text-muted text-center">@'+profile.username+'</span>'+
+			console.log( profile, 'userProfile')
+			$('.profile').prepend( '<img src="'+image.src+'" alt="picture" class="card-img-top myprofile-img">' +
+         '<span class="text-center">'+ profile.firstname +" "+ profile.lastname+'</span>'+
+     '<span class="text-muted text-center">@'+ profile.username+'</span>'+
         '<span class="text-center">'+[profile.bio].join('')+'<span>'+'<br>'+
            '<span class="following">'+
       '<span class="count text-center"> followers 170k following 24</span>')
+        
 			
 		}
 		
 		
 		///save profile edit function
 		$scope.saveEdit=()=>{
-			
-			var profile=$scope.profile;
+			var fn=$('#firstname').val();
+			var ln=$('#lastname').val();
+			var status=$('#status').val();
+			var bio=$('#bio').val();
+			var profile={
+				firstname:fn,
+				lastname:ln,
+				status:status,
+				bio:bio
+			}
 			console.log(profile)
 			xhr.open('POST',url+'editProfile')
 			xhr.setRequestHeader('Content-type', 'application/json')
@@ -395,11 +422,12 @@ angular.module('home.controller')
 				}
 			}
 			
-			console.log("clicked",$scope.profile)
+			
 		     	$('#firstname').val('');
 			$('#lastname').val('')
 			$('#bio').val('');
-		
+			$('#status').val('');
+		     
 			
 		}
 		//the function taking us to upload.html
@@ -413,6 +441,7 @@ angular.module('home.controller')
 		
 		$scope.myprofileBack=()=>{
 			$('#searchfriend').show();
+			$('#drawer').show();
 			$window.history.back();
 		}
      /*for update profile dialog box*/
@@ -427,6 +456,12 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
+	$("#firstname").val($("#firstname").val() + profile.firstname);
+	$("#lastname").val($("#lastname").val() + profile.lastname);
+	$("#relationship").val($("#relationship").val() + profile.relationship);
+	$("#bio").val($("#bio").val() + [profile.bio].join(''));
+	console.log(profile);
+	
   modal.style.display = "block";
 }
 
@@ -553,7 +588,7 @@ angular.module('home.controller')
       MIME_TYPE,
       QUALITY
     );
-    document.getElementById("img-data").append(canvas);
+   // document.getElementById("img-data").append(canvas);
   };
  		});
 			
@@ -610,7 +645,7 @@ function displayInfo(label, file) {
   const p = document.createElement('p');
   p.innerText = `${label} - ${readableBytes(file.size)}`;
            console.log(p)
-  document.getElementById('img-data').append(p);
+  //document.getElementById('img-data').append(p);
 }
 
            function readableBytes(bytes) {
@@ -628,7 +663,9 @@ angular.module('home.controller')
 		var xhrpost = new XMLHttpRequest()
 		const url = 'https://wesocialites.herokuapp.com'
 		$('.common-header ').show();
-		$('#searcharea').show();
+		$('.searcharea').show();
+		$('#searchfriend').show();
+		$('#drawer').show();
 		var image = new Image();
 
 		//console.log(image.src)
@@ -644,6 +681,8 @@ angular.module('home.controller')
 			var post = JSON.parse(data.payload.body);
 			var img = new Image();
 			img.src = post.photo;
+			post.firstname =post.firstname.charAt(0).toUpperCase() + post.firstname.slice(1)
+			post.firstname =post.firstname.charAt(0).toUpperCase() + post.firstname.slice(1)
 
 			console.log(post);
 			$('.post-body').prepend('<div class="box box-widget">' +
@@ -672,10 +711,10 @@ angular.module('home.controller')
 				'<div class="row no-gutters ">' +
 				'<div class="col-12 postimage">' +
 				'<div class="post-message-area">' +
-				'<p post-message>' + post.payload + '</p>' +
+				'<p post-message>' + [post.payload].join() + '</p>' +
 
 				'</div>' +
-				'<img class="post-img" src="' + img.src + '"/>' +
+				'<img class="post-img" src="' + img.src + '" alt=" "/>' +
 				'</div>' +
 				'</div>' +
 
@@ -703,24 +742,29 @@ angular.module('home.controller')
 			console.log(myprofile, 'userProfile')
 			$('.post-something').prepend('<a href="#!/myprofile/' + myprofile.id + '">' +
 				'<img class="myprofile-img " src="' + image.src + '"/></a>')
+				
 		}
           
 		//xhr object to grab all posts from the database
-
+     //  if(xhr.DONE){
 		xhrpost.open("POST", url + '/posts', true)
 		xhrpost.send()
 		xhrpost.onload = () => {
 			var postImg = new Image();
 			var profileimg=new Image();
 			var posts = JSON.parse(xhrpost.responseText)
-     console.log(posts)
+			
+            console.log(posts)
 			posts.forEach(post => {
 				postImg.src = post.postimg;
 				profileimg.src=post.profilePic;
+				console.log(postImg.clientHeight)
+			console.log(postImg.clientWidth)
 				var fn= post.firstname.charAt(0).toUpperCase()+post.firstname.slice(1);
 				var ln=post.lastname.charAt(0).toUpperCase()+post.lastname.slice(1);
 				console.log(fn)
 				console.log(post)
+				
 				
 				$('.post-body').append('<div class="box box-widget">' +
 					'<div class="box-header with-border">' +
@@ -747,11 +791,11 @@ angular.module('home.controller')
 					'<div class="col-12 postimage">' +
 					'<div class="post-message-area">' +
 					'<span post-message>' + post.posttext + '</span>' +
-
+                    '</div>' +
+				    	'<img class="post-img" src="'+postImg.src+'"   alt="  "/>' +
 					'</div>' +
-					'<img class="post-img" src="' + postImg.src + '"/>' +
 					'</div>' +
-					'</div>' +
+					  
 /*
 					'<div class="row text-center">' +
 					'<div class="col-12 post-tools">' +
@@ -765,8 +809,16 @@ angular.module('home.controller')
 
 					'</div>' +
 					'</div>')
+					var img=document.querySelector("img")
+					var h=img.clientHeight;
+					var w=img.clientWidth;
+					console.log(h,w)
+					/*from here*/
+					
 			})
 		}
+		
+		//}
 		$scope.createPost = () => {
 			$location.path('/createpost')
 
@@ -850,12 +902,13 @@ angular.module('home.controller')
 		$('.common-header ').hide();
 		$('.searcharea').hide();
 		$('#searchfriend').hide();
+		$('#drawer').hide();
 			$(document).ready(function() {
 				 
 			      	const MAX_WIDTH = 400;
                     const MAX_HEIGHT = 300;
                  const MIME_TYPE = "image/jpeg,image/jpeg";
-                const QUALITY = 0.8;
+                const QUALITY = 0.9;
 
 			// Prepare the preview for profile picture
 			$("#pic").change(function(ev) {
@@ -944,17 +997,17 @@ angular.module('home.controller')
       QUALITY,
          
     );
-    document.querySelector("#wizardPicturePreview").append(canvas);
+   // document.querySelector("#wizardPicturePreview").append(canvas);
   };
  		});
 			
 			
 		});
-		/* $scope.pos = () => {
+		$scope.post= () => {
 			var payload=$('#payload').val();
 					console.log("clikced",payload)
-				//	socket.send('/app/post.public.', {},)
-				}*/
+					socket.send('/app/post.public.', {},JSON.stringify({'payload':payload}))
+				}
 				
 		$scope.payload = '';
 		$scope.photo = '';
@@ -1049,6 +1102,7 @@ function displayInfo(label, file) {
 
 		$scope.createPostBack = () => {
 			$('#searchfriend').show();
+				$('.drawer').show();
 			window.history.back();
 		}
 
@@ -1060,6 +1114,7 @@ angular.module('home.controller')
 	.controller('chatMessages', ['$scope', 'socket', function($scope, socket) {
 		$('.common-header').show();
 		$('.feed').hide();
+			$('#drawer').hide();
 		$('.messageList').addClass('message-list')
 		const xhr = new XMLHttpRequest();
 		//const thisUser=new XMLHttpRequest();
@@ -1083,31 +1138,17 @@ angular.module('home.controller')
               var fromUser=''
 			if (xhr.status === 200) {
 				var messages = JSON.parse(xhr.response)
-				console.log(messages,"before filtering")
+				
+				if(messages.length!==0){
+				console.log(messages.length,"before filtering")
 				
 				var uniqueReceiverId = [...messages.reduce((map, obj) => map.set(obj.username, obj), new Map()).values()];
 				
 		
-			//	var uniqSenderId = [...messages.reduce((map, obj) => map.set(obj.senderId, obj), new Map()).values()];
-				/*function removeOne(uniqueReceiverId,uniqSenderId){
-			for(let i=0 ;i<uniqueReceiverId.length;i++){
-				for(let j=0 ;j< uniqSenderId.length;j++ ){
-					if(currentUser==uniqSenderId[i].senderId){
-						show.push(uniqSenderId[i])
-						
-					}else{
-						
-						
-					}
-					
-				}
-			}
-			return show;
-			}
-			console.log(removeOne(uniqueReceiverId,uniqSenderId))*/
                var messageholder = ''
 
 				messages.forEach(message => {
+					
 					var m=message.message;
 					
 					var subMessage=m.substring(0,7);
@@ -1145,10 +1186,16 @@ angular.module('home.controller')
 						'<span class="chat-message">' + `${subMessage}` + '<span>' +
 						' </li> </a>';		
  		       }
-                   
+                  
 				})
 			        $(".message-details").prepend(messageholder);
-                    //$(".message-details").append(sentByMe);		
+                    //$(".message-details").append(sentByMe);	
+}
+	 else{
+	               console.log('no-active-conversations')
+	               $('.no-active-conversations').append("Whoops It Seems You Have No Active Conversations")
+}	
+
 			}
 
 		}
@@ -1183,12 +1230,15 @@ angular.module('home.controller')
           
 		$('.common-header ').hide();
 		$('#searchfriend').hide();
+			$('#drawer').hide();
 		$scope.profileId = $routeParams.userprofileId;
 		xhr.open("POST", url + $scope.profileId, true)
 		xhr.send();
 		xhr.onload = () => {
 			if(xhr.status===200){
 		 profile = JSON.parse(xhr.response)
+	profile.firstname =profile.firstname.charAt(0).toUpperCase() + profile.firstname.slice(1)
+	profile.lastname =profile.lastname.charAt(0).toUpperCase() + profile.lastname.slice(1)
 	      image.src=profile.profilepic
 		console.log(profile)
 		 $('.profile-details').append('<section style="background-color: #eee;">'+
@@ -1216,7 +1266,7 @@ angular.module('home.controller')
              '</li>'+
               '<li style="height:20px"  class="list-group-item d-flex justify-content-between align-items-center p-3">'+
                  '<p class="mb-0">Joined</p>'+
-              '<i class="fab fa-calender fa-lg" style="color: #ac2bac;"></i>'+
+              '<span class="" style="color: black;">'+profile.joined+'</span>'+
            
              ' </li>'+
               '<li style="height:20px"  class="list-group-item d-flex justify-content-between align-items-center p-3">'+
@@ -1226,7 +1276,7 @@ angular.module('home.controller')
              ' </li>'+
              '<li style="height:20px"  class="list-group-item d-flex justify-content-between align-items-center p-3">'+
               ' <p class="mb-0">Relationship</p>'+
-                '<i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>'+
+                '<span class="" style="color: black;">'+profile.status+'</span>'+
               
              ' </li>'+
   
@@ -1248,7 +1298,7 @@ angular.module('home.controller')
 			$('#searchfriend').show();
 			$('.post-something').prepend('<a href="#!/profile/">' +
 				'<img class="userpost-img " src="/images/profile.jpg"></a>')
-			$('.searcharea').show();
+			$('#drawer').show();
 		}
 
 
@@ -1261,21 +1311,25 @@ angular.module('home.controller')
 		$('.common-header').hide();
 		$('.searcharea').hide();
 		$('#searchfriend').hide();
+		$('#drawer').hide();
 		var xhr = new XMLHttpRequest();
 		var youMayKnow='';
 		var url='https://wesocialites.herokuapp.com/youmayknow/'
 		xhr.open("POST",url,true);
 		xhr.send()
 			xhr.onload=()=>{
+		    	
 			var profiles=JSON.parse(xhr.response)
 			console.log(profiles)
 			profiles.forEach(profile=>{
+				profile.firstname =profile.firstname.charAt(0).toUpperCase() + profile.firstname.slice(1)
+			    profile.lastname  = profile.lastname.charAt(0).toUpperCase() + profile.lastname.slice(1)
 				 youMayKnow=youMayKnow+' <li  class="list-group-item ">'+
 			'<a href="#!profile/'+profile.id+'">'+
       '  <div class="row" >'+        
-      '  <img class="img-responsive" src="'+profile.profilepic+'">'+
+      '  <img  src="'+profile.profilepic+'">'+
        ' <span class="name">'+profile.firstname +" "+ profile.lastname+' </span>'+
-        ' <span class="somoe-info ml-30 mt-10">@'+profile.firstname+'</span>'+
+        ' <span class="somoe-info ml-30 mt-10 text-muted">@'+profile.firstname+'</span>'+
         /*'  <span class="some-bio">'+profile.bio+'</span>'+*/
        ' </div>'+
         '</a>'+
@@ -1288,6 +1342,7 @@ $('.list-group').append(youMayKnow)
 		
 		     $scope.youMayKnowBack=()=>{
 			$window.history.back();
+				$('#drawer').hide();
 			 $('#searchfriend').show();
 		}
 		

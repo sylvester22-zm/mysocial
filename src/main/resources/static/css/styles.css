@@ -25,6 +25,12 @@ a{
 	margin-left: 20px;
 	
 }
+img[src=""] {
+    display: none;
+}
+img[src="null"] {
+    display: none;
+}
 .fa-bars{
 	position: absolute;
 	right: 8px;

@@ -16,7 +16,7 @@ public interface UserProfileService {
      List<ProfileDammy>findAll();
 	 UserProfile findByUserId(Long id) ;
 	/* UserProfile userProfile(UserProfile userProfile); */
-
+    
 	UserProfile findByUserProfile(User user);
 
 }

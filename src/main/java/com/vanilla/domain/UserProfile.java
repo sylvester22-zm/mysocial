@@ -60,17 +60,36 @@ public class UserProfile {
 		return username;
 	}
 
+	public String getJoined() {
+		return joined;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public void setJoined(String joined) {
+		this.joined = joined;
+	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-	public UserProfile(String username,String firstname, String lastname, String bio, String pic, Long id) {
+	public UserProfile(String username,String firstname, String lastname, String bio, 
+			String pic, Long id,String joined,String status) {
 		this.username=username;
 		this.lastname = lastname;
 		this.firstname = firstname;
 		this.bio = bio;
 		this.profilepic = pic;
 		this.id = id;
+		this.joined=joined;
+		this.status=status;
 		
 	}
 

@@ -10,9 +10,11 @@
     <input  type="button"  class="btn btn-secondary btn-sm uploadProfile" value="upload Profile" ng-click="uploadProfile()"></input>
     </div>  
     </div>
+    
+{{firstname}}
+{{lastname}}
     </div>
     <!-- Button trigger modal -->
-
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -24,10 +26,10 @@
            <small style="color:green" class="text-center alert"></small>
     <p class="text-center">Profile Edit</p>
      <div class="row mt-2 ">
-                    <div class="col-sm-6 m-2"><input type="text" id="firstname"  ng-model="profile.firstname"class="form-control" placeholder="first name" value=""></div>
+                    <div class="col-sm-6 m-2"><input type="text"  id="firstname"   ng-model="profile.firstname"class="form-control" placeholder="first name" value=""></div>
                     <div class="col-sm-6 m-2" ><input type="text" id="lastname"  class="form-control" ng-model="profile.lastname" placeholder="Last name"></div>
-                    <div class="col-sm-6 m-2" ><input type="text" id="lastname"  class="form-control" ng-model="profile.status" placeholder="Relationship Status"></div>
-                     <div class="col-sm-6 m-2"><textarea id="bio"  type="text" row="2" class="form-control" ng-model="profile.bio" placeholder="Your Bio"></textarea>
+                    <div class="col-sm-6 m-2" ><input type="text" id="status"  class="form-control" ng-model="profile.status" placeholder="Relationship Status"></div>
+                     <div class="col-sm-6 m-2"><textarea id="bio"  type="text" row="2" class="form-control" ng-model="profile.bio" placeholder="Shot  Bio About Yourself"></textarea>
                 </div>
   </div>
   <div class="row justify-content-end">

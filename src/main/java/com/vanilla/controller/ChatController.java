@@ -1,13 +1,11 @@
 package com.vanilla.controller;
 
-import java.net.http.HttpResponse;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -26,7 +24,6 @@ import com.vanilla.domain.User;
 import com.vanilla.domain.UserProfile;
 import com.vanilla.events.ActiveEvent;
 import com.vanilla.events.ParticipantRepository;
-import com.vanilla.repository.MessageRepository;
 import com.vanilla.repository.UserRepository;
 import com.vanilla.service.PostService;
 import com.vanilla.service.UserProfileService;
@@ -67,7 +64,7 @@ public class ChatController {
 		System.out.println(message.toString());
 		message.setUsername(principal.getName());
 		LocalDateTime dateTime = LocalDateTime.now();
-		DateTimeFormatter formart = DateTimeFormatter.ofPattern(" HH:mm a dd-MM-yyyy");
+		DateTimeFormatter formart = DateTimeFormatter.ofPattern("EEE,d MMM yyyy HH:mm a");
 		String dateTimeFormat = dateTime.format(formart);
 		message.setLocalDatetime(dateTimeFormat);
         
@@ -106,6 +103,7 @@ public class ChatController {
 	@ResponseBody
 	public List<ChatMessage> fetchConversation(@PathVariable("username") String username, Principal principal) {
 		System.out.println("another user " + username);
+	
 		String thisUser = principal.getName();
 		User me = userServiceImpl.findByUsername(thisUser);
 	
@@ -116,7 +114,7 @@ public class ChatController {
 		//List<ChatMessage> messages = messageServiceImpl.fetchConversation(me.getId(), toUser.getId());
 		
 		System.out.println(messages + "fetched messages");
-
+		
 		return messages;
 
 	}
@@ -124,10 +122,12 @@ public class ChatController {
 	@RequestMapping(value = "/conversations", produces = "application/json")
 	@ResponseBody
 	public List<ChatMessage> myMessages(Principal principal) {
-
+		
 		String thisUser = principal.getName();
 		User user = userServiceImpl.findByUsername(thisUser);
+		
 		List<ChatMessage> messages = messageServiceImpl.fetchMessages(user.getId());
+		
 
 		return messages;
 	}
@@ -198,7 +198,7 @@ public class ChatController {
 		 */
 		UserProfile profile = userProfileService.findByUserProfile(user);
 		LocalDateTime dateTime = LocalDateTime.now();
-		DateTimeFormatter formart = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm a");
+		DateTimeFormatter formart = DateTimeFormatter.ofPattern("EEE,d MMM yyyy HH:mm a");
 		String dateTimeFormat = dateTime.format(formart);
 		post.setUsername(profile.getUsername());
 		post.setFirstname(profile.getFirstname());
@@ -222,7 +222,7 @@ public class ChatController {
 		UserProfile profile = userProfileService.findByUserProfile(user);
 		String pic=profile.getProfilepic();
 		LocalDateTime dateTime = LocalDateTime.now();
-		DateTimeFormatter formart = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm a");
+		DateTimeFormatter formart = DateTimeFormatter.ofPattern("EEE,d MMM yyyy HH:mm a");
 		String dateTimeFormat = dateTime.format(formart);
 		post.setUsername(profile.getUsername());
 		post.setFirstname(profile.getFirstname());

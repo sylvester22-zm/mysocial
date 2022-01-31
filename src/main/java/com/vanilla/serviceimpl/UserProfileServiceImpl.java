@@ -1,5 +1,8 @@
 package com.vanilla.serviceimpl;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +36,7 @@ public class UserProfileServiceImpl implements UserProfileService{
 		
 		  List<UserProfile>pro=new ArrayList<>();
 		  profile.stream().forEach(p->{
-		  pro.add(new UserProfile(p.getUsername(),p.getFirstname(),p.getLastname(),p.getBio(),p.getProfilepic(),p.getId()));
+		  pro.add(new UserProfile(p.getUsername(),p.getFirstname(),p.getLastname(),p.getBio(),p.getProfilepic(),p.getId(),p.getJoined(),p.getStatus()));
 		  });
 		 
 		/*
@@ -49,13 +52,14 @@ public class UserProfileServiceImpl implements UserProfileService{
 	@Override
 	public UserProfile findUserProfile(Long userProfile) {
 		UserProfile profile=userProfileRepository.findOne(userProfile);
-		return new UserProfile(profile.getUsername(),profile.getFirstname(),profile.getLastname(),profile.getBio(),profile.getProfilepic(),profile.getId()) ;
+		return new UserProfile(profile.getUsername(),profile.getFirstname(),profile.getLastname(),profile.getBio(),profile.getProfilepic(),profile.getId(),profile.getJoined(),profile.getStatus()) ;
 	}
 
 	@Override
 	@Transactional
 	public void saveProfile(UserProfile userProfile,User user) {
 		   userRepository.save(user);
+		 
 		userProfileRepository.save(userProfile);
 		
 		
