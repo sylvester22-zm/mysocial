@@ -1007,6 +1007,7 @@ angular.module('home.controller')
 			var payload=$('#payload').val();
 					console.log("clikced",payload)
 					socket.send('/app/post.public.', {},JSON.stringify({'payload':payload}))
+					$location.path('/newsfeed')
 				}
 				
 		$scope.payload = '';
