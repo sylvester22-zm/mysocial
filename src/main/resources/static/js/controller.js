@@ -1098,7 +1098,7 @@ angular.module('home.controller')
 		
 
 		$scope.mymessages = '';
-		const url = 'http://localhost:8080/conversations/';
+		const url = 'https://wesocialites.herokuapp.com/conversations/';
 
 		/*$scope.messages = socket.shareMessage(function (pay) {
 		
