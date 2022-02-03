@@ -195,7 +195,7 @@ angular.module('home.controller')
 
 			angular.element(home).$scope;
 
-			const url = 'http://www.onebyteinc.com/' + $scope.sendTo;
+			const url = 'http://www.onebyteinc.com/conversation/' + $scope.sendTo;
 			var rowClass = '';
 			xhr.open('POST', url, true);
 			xhr.send();
@@ -314,7 +314,7 @@ angular.module('home.controller')
 angular.module('home.controller')
 	.controller('searchfriend', ['$scope', 'socket', '$routeParams', function($scope, socket, $routeParams) {
 		var xhr = new XMLHttpRequest();
-		const url = 'http://www.onebyteinc.com/search/';
+		const url = 'http://localhost:8080/search/';
 		$scope.username = $routeParams.username;
 		$('.common-header ').hide();
 		$('#searchBack').css('display', 'block');
@@ -375,7 +375,7 @@ angular.module('home.controller')
 		$('#drawer').hide();
 		var editProfile=new XMLHttpRequest()
 		var xhr = new XMLHttpRequest()
-		url='http://www.onebyteinc.com/'
+		url='http://localhost:8080/'
 		var image = new Image()
 		 var profile='';
 		//where the user wil choose his/her profile
@@ -661,7 +661,7 @@ angular.module('home.controller')
 	.controller('feeds', ['$scope', '$location', 'socket', function($scope, $location, socket) {
 		var xhr = new XMLHttpRequest();
 		var xhrpost = new XMLHttpRequest()
-		const url = 'http://www.onebyteinc.com'
+		const url = 'http://localhost:8080'
 		$('.common-header ').show();
 		$('.searcharea').show();
 		$('#searchfriend').show();
@@ -1098,7 +1098,7 @@ angular.module('home.controller')
 		
 
 		$scope.mymessages = '';
-		const url = 'http://www.onebyteinc.com/conversations/';
+		const url = 'http://localhost:8080/conversations/';
 
 		/*$scope.messages = socket.shareMessage(function (pay) {
 		
@@ -1199,7 +1199,7 @@ console.log(message.username)
 angular.module('home.controller')
 	.controller('profile', ['$scope', '$routeParams', '$window', '$location', function($scope, $routeParams, $window, $location) {
 		var xhr = new XMLHttpRequest();
-		const url = 'http://www.onebyteinc.com/userprofile/';
+		const url = 'http://localhost:8080/userprofile/';
       var profile='';
      var image=new Image();
           
@@ -1251,7 +1251,7 @@ angular.module('home.controller')
              ' </li>'+
              '<li style="height:20px"  class="list-group-item d-flex justify-content-between align-items-center p-3">'+
               ' <p class="mb-0">Relationship</p>'+
-                '<span class="" style="color: black;">'+profile.status+'</span>'+
+                '<span class="" style="color: black;">'+[profile.status].join('')+'</span>'+
               
              ' </li>'+
   
@@ -1289,7 +1289,7 @@ angular.module('home.controller')
 		$('#drawer').hide();
 		var xhr = new XMLHttpRequest();
 		var youMayKnow='';
-		var url='http://www.onebyteinc.com/youmayknow'
+		var url='http://localhost:8080/youmayknow'
 		xhr.open("POST",url,true);
 		xhr.send()
 			xhr.onload=()=>{
