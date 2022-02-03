@@ -375,7 +375,7 @@ angular.module('home.controller')
 		$('#drawer').hide();
 		var editProfile=new XMLHttpRequest()
 		var xhr = new XMLHttpRequest()
-		url='http://localhost:8080/'
+		url='https://wesocialites.herokuapp.com/'
 		var image = new Image()
 		 var profile='';
 		//where the user wil choose his/her profile
@@ -1098,7 +1098,7 @@ angular.module('home.controller')
 		
 
 		$scope.mymessages = '';
-		const url = 'https://wesocialites.herokuapp.com/conversations/';
+		const url = 'http://localhost:8080/conversations/';
 
 		/*$scope.messages = socket.shareMessage(function (pay) {
 		
