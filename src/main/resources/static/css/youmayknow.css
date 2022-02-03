@@ -18,8 +18,8 @@ h3{
   color:orange;
 }
 .list-group-item img {
-    height:60px; 
-    width:60px;
+    height:80px; 
+    width:80px;
     border-radius: 3px;
 }
 .list-group{
@@ -40,11 +40,13 @@ h3{
 .somoe-info{
 	position: absolute;
 	margin-left: 71px;
-	margin-top: 20px;
+	margin-top: 25px;
 	color:black;
 }
-.name {
-	margin-left:10px;
-     color: black; 
+.name{
+	position: absolute;
+	margin-left: 71px;
+	margin-top: 10px;
 }
+
 }

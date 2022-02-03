@@ -17,11 +17,12 @@
 a{
 	text-decoration: none;
 }
+
 .fa-user-friends{
 	color:black;
 }
 .navbar-header a i{
-	margin-top: 3px;
+	margin-top: 10px;
 	margin-left: 20px;
 	
 }

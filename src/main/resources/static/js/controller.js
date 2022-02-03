@@ -375,7 +375,7 @@ angular.module('home.controller')
 		$('#drawer').hide();
 		var editProfile=new XMLHttpRequest()
 		var xhr = new XMLHttpRequest()
-		url='https://wesocialites.herokuapp.com/'
+		url='http://localhost:8080/'
 		var image = new Image()
 		 var profile='';
 		//where the user wil choose his/her profile
@@ -672,10 +672,10 @@ angular.module('home.controller')
 
 
 		$scope.$on('newsfeed', (event, data) => {
-			/*
-				this is the xhr request object getting data from the 
-				database and rendering it into the UI
-	 */
+			
+				/*this is the xhr request object getting data from the 
+				database and rendering it into the UI*/
+	 
 			//var post = JSON.parse(newsfeed.body)
 			console.log(data.payload.body, 'data post from user');
 			var post = JSON.parse(data.payload.body);
@@ -716,19 +716,7 @@ angular.module('home.controller')
 				'</div>' +
 				'<img class="post-img" src="' + img.src + '" alt=" "/>' +
 				'</div>' +
-				'</div>' +
-
-				/*'<div class="row text-center">' +
-				'<div class="col-12 post-tools">' +
-				'<i class="fas fa-heart fa-2x"/>' +
-				'<i class="fa fa-thumbs-up "/>' +
-				'<i class="fas fa-comment "></i>' +
-				'<i class="fa fa-share  "/>' +
-				'</div>' +*/
-
-				'</div>' +
-				 	'</div>' +
-				'</div>')
+				'</div>' )
 
 		})
       
@@ -741,12 +729,12 @@ angular.module('home.controller')
 			image.src = myprofile.profilepic;
 			console.log(myprofile, 'userProfile')
 			$('.post-something').prepend('<a href="#!/myprofile/' + myprofile.id + '">' +
-				'<img class="myprofile-img " src="' + image.src + '"/></a>')
+				'<img class="myprofile-img ml-3" src="' + image.src + '"/></a>')
 				
 		}
           
 		//xhr object to grab all posts from the database
-     //  if(xhr.DONE){
+       if(xhr.DONE){
 		xhrpost.open("POST", url + '/posts', true)
 		xhrpost.send()
 		xhrpost.onload = () => {
@@ -794,31 +782,17 @@ angular.module('home.controller')
                     '</div>' +
 				    	'<img class="post-img" src="'+postImg.src+'"   alt="  "/>' +
 					'</div>' +
-					'</div>' +
-					  
-/*
-					'<div class="row text-center">' +
-					'<div class="col-12 post-tools">' +
-					'<i class="fas fa-heart fa-2x"/>' +
-					'<i class="fa fa-thumbs-up "/>' +
-					'<i class="fas fa-comment "></i>' +
-					'<i class="fa fa-share  "/>' +
-					'</div>' +
-
-					'</div>' +*/
-
-					'</div>' +
-					'</div>')
+					'</div>' )
+					
 					var img=document.querySelector("img")
 					var h=img.clientHeight;
 					var w=img.clientWidth;
 					console.log(h,w)
-					/*from here*/
 					
 			})
 		}
 		
-		//}
+		}
 		$scope.createPost = () => {
 			$location.path('/createpost')
 
@@ -1115,7 +1089,7 @@ angular.module('home.controller')
 	.controller('chatMessages', ['$scope', 'socket', function($scope, socket) {
 		$('.common-header').show();
 		$('.feed').hide();
-			$('#drawer').hide();
+			$('#searchfriend').hide();
 		$('.messageList').addClass('message-list')
 		const xhr = new XMLHttpRequest();
 		//const thisUser=new XMLHttpRequest();
@@ -1329,7 +1303,7 @@ angular.module('home.controller')
 			'<a href="#!profile/'+profile.id+'">'+
       '  <div class="row" >'+        
       '  <img  src="'+profile.profilepic+'">'+
-       ' <span class="name">'+profile.firstname +" "+ profile.lastname+' </span>'+
+       ' <span class="name ">'+profile.firstname +" "+ profile.lastname+' </span>'+
         ' <span class="somoe-info ml-30 mt-10 text-muted">@'+profile.firstname+'</span>'+
         /*'  <span class="some-bio">'+profile.bio+'</span>'+*/
        ' </div>'+
