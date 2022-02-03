@@ -314,7 +314,7 @@ angular.module('home.controller')
 angular.module('home.controller')
 	.controller('searchfriend', ['$scope', 'socket', '$routeParams', function($scope, socket, $routeParams) {
 		var xhr = new XMLHttpRequest();
-		const url = 'http://localhost:8080/search/';
+		const url = 'http://www.onebyteinc.com/search/';
 		$scope.username = $routeParams.username;
 		$('.common-header ').hide();
 		$('#searchBack').css('display', 'block');
@@ -375,7 +375,7 @@ angular.module('home.controller')
 		$('#drawer').hide();
 		var editProfile=new XMLHttpRequest()
 		var xhr = new XMLHttpRequest()
-		url='http://localhost:8080/'
+		url='http://www.onebyteinc.com/'
 		var image = new Image()
 		 var profile='';
 		//where the user wil choose his/her profile
@@ -661,7 +661,7 @@ angular.module('home.controller')
 	.controller('feeds', ['$scope', '$location', 'socket', function($scope, $location, socket) {
 		var xhr = new XMLHttpRequest();
 		var xhrpost = new XMLHttpRequest()
-		const url = 'http://localhost:8080'
+		const url = 'http://www.onebyteinc.com'
 		$('.common-header ').show();
 		$('.searcharea').show();
 		$('#searchfriend').show();
@@ -1098,7 +1098,7 @@ angular.module('home.controller')
 		
 
 		$scope.mymessages = '';
-		const url = 'http://localhost:8080/conversations/';
+		const url = 'http://www.onebyteinc.com/conversations/';
 
 		/*$scope.messages = socket.shareMessage(function (pay) {
 		
@@ -1199,7 +1199,7 @@ console.log(message.username)
 angular.module('home.controller')
 	.controller('profile', ['$scope', '$routeParams', '$window', '$location', function($scope, $routeParams, $window, $location) {
 		var xhr = new XMLHttpRequest();
-		const url = 'http://localhost:8080/userprofile/';
+		const url = 'http://www.onebyteinc.com/userprofile/';
       var profile='';
      var image=new Image();
           
@@ -1289,7 +1289,7 @@ angular.module('home.controller')
 		$('#drawer').hide();
 		var xhr = new XMLHttpRequest();
 		var youMayKnow='';
-		var url='http://localhost:8080/youmayknow'
+		var url='http://www.onebyteinc.com/youmayknow'
 		xhr.open("POST",url,true);
 		xhr.send()
 			xhr.onload=()=>{
