@@ -1241,7 +1241,7 @@ angular.module('home.controller')
              '</li>'+
               '<li style="height:20px"  class="list-group-item d-flex justify-content-between align-items-center p-3">'+
                  '<p class="mb-0">Joined</p>'+
-              '<span class="" style="color: black;">'+profile.joined+'</span>'+
+              '<span class="" style="color: black;">'+[profile.joined].join('')+'</span>'+
            
              ' </li>'+
               '<li style="height:20px"  class="list-group-item d-flex justify-content-between align-items-center p-3">'+
