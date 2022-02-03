@@ -1289,7 +1289,7 @@ angular.module('home.controller')
 		$('#drawer').hide();
 		var xhr = new XMLHttpRequest();
 		var youMayKnow='';
-		var url='http://www.onebyteinc.com/youmayknow/'
+		var url='http://localhost:8080/youmayknow/'
 		xhr.open("POST",url,true);
 		xhr.send()
 			xhr.onload=()=>{
