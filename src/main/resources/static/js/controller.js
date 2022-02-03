@@ -661,7 +661,7 @@ angular.module('home.controller')
 	.controller('feeds', ['$scope', '$location', 'socket', function($scope, $location, socket) {
 		var xhr = new XMLHttpRequest();
 		var xhrpost = new XMLHttpRequest()
-		const url = 'http://www.onebyteinc.com'
+		const url = 'http://localhost:8080'
 		$('.common-header ').show();
 		$('.searcharea').show();
 		$('#searchfriend').show();
